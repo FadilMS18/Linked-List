@@ -7,6 +7,14 @@ class LinkedList {
     this.next = obj.next;
   }
 
+  checkHead() {
+    if (!this.value) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
   // Method to add list to the tail
   append(nextValue) {
     if (!this.value) {
@@ -30,6 +38,28 @@ class LinkedList {
       this.next = body;
     }
   }
+
+  //   Method to determine how much data that we have in the list
+  size() {
+    let list = this;
+    let size = 1;
+    do {
+      size++;
+      list = list.next;
+    } while (list.next !== null);
+    console.log(size);
+  }
+
+  //   Method to see what is the head of the list
+  head() {
+    if (!this.checkHead) {
+      console.log("The List is Empty");
+    }
+    console.log(this);
+  }
+
+  // Method to return the tail of the list
+  tail() {}
 }
 
 class Node {
@@ -50,4 +80,11 @@ list.append("Kaiju");
 
 // Prepend Method to add data to the head
 list.prepend("Mammoth");
-console.log(list);
+
+// Size Method to count how much data do we have in the list
+list.size();
+
+// Head Method to see what is the head of the list
+list.head();
+
+let ken = null;
