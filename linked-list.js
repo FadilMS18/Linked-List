@@ -41,25 +41,53 @@ class LinkedList {
 
   //   Method to determine how much data that we have in the list
   size() {
+    if(!this.checkHead()){
+      return('The List is empty, size of the LinkedList is null')
+    }
     let list = this;
-    let size = 1;
-    do {
-      size++;
+    let index = 0;
+    while (list.next !== null) {
+      index++ ;
       list = list.next;
-    } while (list.next !== null);
-    console.log(size);
+    }
+    return index + 1;
   }
 
   //   Method to see what is the head of the list
   head() {
-    if (!this.checkHead) {
-      console.log("The List is Empty");
+    if (!this.checkHead()) {
+      return("The List is Empty");
     }
-    console.log(this);
+    return this;
   }
 
   // Method to return the tail of the list
-  tail() {}
+  tail() {
+    if (!this.checkHead()) {
+      return("The List is Empty");
+    } else {
+      let current = this;
+      while (current.next !== null) {
+        current = current.next;
+      }
+      return current;
+    }
+  }
+
+  // Method to return list on given index
+  at(index) {
+    if(!this.checkHead()){
+      return('The List is Empty')
+    }else if(index > this.size()){
+      return null
+    }else{
+      let list = {...this}
+      for(let i = 0; i !== index; i++){
+        list = list.next
+      }
+      return list 
+    }
+  }
 }
 
 class Node {
@@ -82,9 +110,13 @@ list.append("Kaiju");
 list.prepend("Mammoth");
 
 // Size Method to count how much data do we have in the list
-list.size();
+console.log(list.size());
 
 // Head Method to see what is the head of the list
-list.head();
+console.log(list.head());
 
-let ken = null;
+// Tail Method to see what is the tail of the list
+console.log(list.tail());
+
+// At(index) method to return list on given index
+console.log(list.at(7))
