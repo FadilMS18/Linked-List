@@ -28,7 +28,7 @@ class LinkedList {
     }
   }
 
-  //   Method to add list to the head
+  // Method to add list to the head
   prepend(newValue) {
     if (!this.value) {
       this.addHead(newValue);
@@ -39,15 +39,15 @@ class LinkedList {
     }
   }
 
-  //   Method to determine how much data that we have in the list
+  //   Method to determine how much Node that we have in the list
   size() {
-    if(!this.checkHead()){
-      return('The List is empty, size of the LinkedList is null')
+    if (!this.checkHead()) {
+      return "The List is empty, size of the LinkedList is null";
     }
     let list = this;
     let index = 0;
     while (list.next !== null) {
-      index++ ;
+      index++;
       list = list.next;
     }
     return index + 1;
@@ -56,7 +56,7 @@ class LinkedList {
   //   Method to see what is the head of the list
   head() {
     if (!this.checkHead()) {
-      return("The List is Empty");
+      return "The List is Empty";
     }
     return this;
   }
@@ -64,7 +64,7 @@ class LinkedList {
   // Method to return the tail of the list
   tail() {
     if (!this.checkHead()) {
-      return("The List is Empty");
+      return "The List is Empty";
     } else {
       let current = this;
       while (current.next !== null) {
@@ -76,16 +76,46 @@ class LinkedList {
 
   // Method to return list on given index
   at(index) {
-    if(!this.checkHead()){
-      return('The List is Empty')
-    }else if(index > this.size()){
-      return null
-    }else{
-      let list = {...this}
-      for(let i = 0; i !== index; i++){
-        list = list.next
+    if (!this.checkHead()) {
+      return "The List is Empty";
+    } else if (index > this.size()) {
+      return null;
+    } else {
+      let list = { ...this };
+      for (let i = 0; i !== index; i++) {
+        list = list.next;
       }
-      return list 
+      return list;
+    }
+  }
+
+  // Method to remove last Node from the list
+  pop() {
+    if (!this.checkHead()) {
+      return "The list is empty";
+    } else if (this.next == null) {
+      delete this.value
+      delete this.next
+    } else {
+      let current = this;
+      while (current.next.next !== null) {
+        current = current.next;
+      }
+      current.next = null;
+    }
+  }
+  
+  // Method to see if a value is in the linkedList
+  contains(value){
+    if(!this.checkHead()){
+      return('The List is empty')
+    }else{
+      let current = {...this}
+      while(current.next !== null){
+        if(current.value == value) return true;
+        current = current.next;
+      }
+      return false
     }
   }
 }
@@ -119,4 +149,11 @@ console.log(list.head());
 console.log(list.tail());
 
 // At(index) method to return list on given index
-console.log(list.at(7))
+console.log(list.at(2));
+
+// Pop Method to remove last node from linkedList
+list.pop()
+console.log(list)
+
+// Contains(value) method to check if the value given is in the list or not
+console.log(list.contains('Cat'))
