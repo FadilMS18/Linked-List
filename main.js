@@ -1,7 +1,6 @@
 import { LinkedList } from "./linked-list.js";
 console.clear();
 
-
 let list = new LinkedList();
 
 // Append Method to add list to the tail
@@ -13,7 +12,7 @@ list.append("Kaiju");
 
 // Prepend Method to add data to the head
 list.prepend("Mammoth");
-console.log(list)
+console.log(list);
 
 // Size Method to count how much data do we have in the list
 console.log(list.size());
@@ -40,3 +39,8 @@ console.log(list.find("Godzilla"));
 // toString method to print all the list in string type
 console.log(list.toString());
 
+// insertAt method to insert a node to given index
+console.log(list.insertAt("iguana", 3));
+
+// removeAt method to remove a node in the given index
+console.log(list.removeAt(2))

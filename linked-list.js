@@ -151,7 +151,59 @@ class LinkedList {
           copyObj = copyObj.next;
         }
       }
-      return dumArray.join(' -> ');
+      return dumArray.join(" -> ");
+    }
+  }
+
+  // Method to insert a node to given index
+  insertAt(value, index) {
+    if (this.isHeadEmpty()) {
+      return(
+        "List is empty, so the given value will be the head of the list"
+      );
+      this.append(value);
+    } else if (index >= this.size()) {
+      return("The index given is bigger than the list size");
+    } else {
+      let current = this;
+      let copyObj = { ...this };
+      let dex = 0;
+      while (dex !== index) {
+        dex += 1;
+        copyObj = copyObj.next;
+        current = current.next;
+      }
+      let restList = copyObj.next;
+      current.next = new Node(value);
+      current.next.next = restList;
+      return current
+    }
+  }
+
+  // Method to remove a node to given index
+  removeAt(index){
+    if(this.isHeadEmpty()){
+      return('The list is empty so null')
+    }else if(index >= this.size()){
+      return('There are no value in the given index soo... null')
+    }else if(this.size() <= 1){
+      delete this.value
+      delete this.next
+      return(this)
+    }else{
+      let current = this
+      let copy = {...this}
+      let dex = 0
+      while(dex !== index){
+        dex += 1
+        copy = copy.next 
+      }
+      for(let i = 0; i < dex - 1; i++){
+        current = current.next
+      }
+      let theRest = copy.next
+      current.next = theRest
+      return current
     }
   }
 }
@@ -163,4 +215,4 @@ class Node {
   }
 }
 
-export{ LinkedList }
+export { LinkedList };
